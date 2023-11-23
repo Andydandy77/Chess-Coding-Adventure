@@ -12,10 +12,23 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '6.0'
+        dotnet-version: '5.0.x' # Replace with your .NET version
 
     - name: Build
       run: dotnet build --configuration Release
 
     - name: Test
       run: dotnet test --no-build --configuration Release
+
+    - name: Send email notification
+      if: always() # Ensures email is sent regardless of previous step success/failure
+      uses: dawidd6/action-send-mail@v2
+      with:
+        server_address: ${{ secrets.SMTP_SERVER }}
+        server_port: ${{ secrets.SMTP_PORT }}
+        username: ${{ secrets.SMTP_USERNAME }}
+        password: ${{ secrets.SMTP_PASSWORD }}
+        subject: GitHub Actions Build/Test Result
+        body: The build and test process completed. Check GitHub Actions for details.
+        to: ${{ secrets.EMAIL_RECIPIENT }}
+        from: ${{ secrets.SMTP_USERNAME }}
