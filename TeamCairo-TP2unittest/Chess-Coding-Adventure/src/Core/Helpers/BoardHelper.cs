@@ -87,7 +87,6 @@
 			int fileIndex = fileNames.IndexOf(fileName);
 			int rankIndex = rankNames.IndexOf(rankName);
 			return IndexFromCoord(fileIndex, rankIndex);
-			
 		}
 
 		public static bool IsValidCoordinate(int x, int y) => x >= 0 && x < 8 && y >= 0 && y < 8;
