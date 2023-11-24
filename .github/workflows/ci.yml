@@ -1,6 +1,6 @@
 name: Build and Test with Email Notification
 
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
   build-and-test:
@@ -26,11 +26,20 @@ jobs:
       - name: Test
         id: test
         run: |
-          if dotnet test --no-build --configuration Release; then
+          dotnet test --no-build --configuration Release --logger "console;verbosity=detailed" > test_results.txt
+          if [ $? -eq 0 ]; then
             echo "::set-output name=status::true"
           else
             echo "::set-output name=status::false"
           fi
+        continue-on-error: true
+
+      - name: Prepare Test Results
+        id: prep_results
+        if: always()
+        run: |
+          test_output="$(<test_results.txt)"
+          echo "::set-output name=results::${test_output}"
 
       - name: Send email notification
         if: always() # Ensures email is sent regardless of previous step success/failure
@@ -44,5 +53,7 @@ jobs:
           body: |
             Build Succeeded: ${{ steps.build.outputs.status }}
             Tests Passed: ${{ steps.test.outputs.status }}
+            Test Results:
+            ${{ steps.prep_results.outputs.results }}
           to: ${{ secrets.EMAIL_RECIPIENT }}
           from: ${{ secrets.SMTP_USERNAME }}
