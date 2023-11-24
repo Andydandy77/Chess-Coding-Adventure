@@ -1,4 +1,4 @@
-name: Build, Test, and Report Detailed
+name: Build and Test with Email Notification
 
 on: [pull_request]
 
@@ -15,24 +15,24 @@ jobs:
           dotnet-version: '6.0' # Replace with your .NET version
 
       - name: Build
-        run: dotnet build --configuration Release
-
-      - name: Test and Capture Results
+        id: build
         run: |
-          dotnet test --no-build --configuration Release --logger "console;verbosity=detailed" > test_results.txt
+          if dotnet build --configuration Release; then
+            echo "::set-output name=status::true"
+          else
+            echo "::set-output name=status::false"
+          fi
 
-      - name: Process Test Results
-        id: process_test_results
+      - name: Test
+        id: test
         run: |
-          # Extracting test results - simple example
-          passed_tests=$(grep -oP 'Passed!  \K.*' test_results.txt)
-          failed_tests=$(grep -oP 'Failed!  \K.*' test_results.txt)
-          echo "Passed Tests: $passed_tests"
-          echo "Failed Tests: $failed_tests"
-          echo "::set-output name=passed_tests::$passed_tests"
-          echo "::set-output name=failed_tests::$failed_tests"
+          if dotnet test --no-build --configuration Release; then
+            echo "::set-output name=status::true"
+          else
+            echo "::set-output name=status::false"
+          fi
 
-      - name: Send email notification with Test Details
+      - name: Send email notification
         if: always() # Ensures email is sent regardless of previous step success/failure
         uses: dawidd6/action-send-mail@v2
         with:
@@ -40,12 +40,9 @@ jobs:
           server_port: ${{ secrets.SMTP_PORT }}
           username: ${{ secrets.SMTP_USERNAME }}
           password: ${{ secrets.SMTP_PASSWORD }}
-          subject: GitHub Actions Detailed Test Result
+          subject: GitHub Actions Build/Test Result
           body: |
-            Passed Tests:
-            ${{ steps.process_test_results.outputs.passed_tests }}
-            
-            Failed Tests:
-            ${{ steps.process_test_results.outputs.failed_tests }}
+            Build Succeeded: ${{ steps.build.outputs.status }}
+            Tests Passed: ${{ steps.test.outputs.status }}
           to: ${{ secrets.EMAIL_RECIPIENT }}
           from: ${{ secrets.SMTP_USERNAME }}
