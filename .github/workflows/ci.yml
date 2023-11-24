@@ -1,4 +1,4 @@
-name: Build and Test
+name: Build and Test with Email Notification
 
 on: [push, pull_request]
 
@@ -7,28 +7,42 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: '6.0' # Replace with your .NET version
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '6.0' # Replace with your .NET version
 
-    - name: Build
-      run: dotnet build --configuration Release
+      - name: Build
+        id: build
+        run: |
+          if dotnet build --configuration Release; then
+            echo "::set-output name=status::true"
+          else
+            echo "::set-output name=status::false"
+          fi
 
-    - name: Test
-      run: dotnet test --no-build --configuration Release
+      - name: Test
+        id: test
+        run: |
+          if dotnet test --no-build --configuration Release; then
+            echo "::set-output name=status::true"
+          else
+            echo "::set-output name=status::false"
+          fi
 
-    - name: Send email notification
-      if: always() # Ensures email is sent regardless of previous step success/failure
-      uses: dawidd6/action-send-mail@v2
-      with:
-        server_address: ${{ secrets.SMTP_SERVER }}
-        server_port: ${{ secrets.SMTP_PORT }}
-        username: ${{ secrets.SMTP_USERNAME }}
-        password: ${{ secrets.SMTP_PASSWORD }}
-        subject: GitHub Actions Build/Test Result
-        body: The build and test process completed. Check GitHub Actions for details.
-        to: ${{ secrets.EMAIL_RECIPIENT }}
-        from: ${{ secrets.SMTP_USERNAME }}
+      - name: Send email notification
+        if: always() # Ensures email is sent regardless of previous step success/failure
+        uses: dawidd6/action-send-mail@v2
+        with:
+          server_address: ${{ secrets.SMTP_SERVER }}
+          server_port: ${{ secrets.SMTP_PORT }}
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: GitHub Actions Build/Test Result
+          body: |
+            Build Succeeded: ${{ steps.build.outputs.status }}
+            Tests Passed: ${{ steps.test.outputs.status }}
+          to: ${{ secrets.EMAIL_RECIPIENT }}
+          from: ${{ secrets.SMTP_USERNAME }}
