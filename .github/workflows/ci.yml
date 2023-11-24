@@ -1,4 +1,4 @@
-name: Build and Test with Email Notification
+name: Build, Test, and Report
 
 on: [pull_request]
 
@@ -15,33 +15,22 @@ jobs:
           dotnet-version: '6.0' # Replace with your .NET version
 
       - name: Build
-        id: build
-        run: |
-          if dotnet build --configuration Release; then
-            echo "::set-output name=status::true"
-          else
-            echo "::set-output name=status::false"
-          fi
+        run: dotnet build --configuration Release
 
-      - name: Test
-        id: test
+      - name: Run Tests with Report
         run: |
-          dotnet test --no-build --configuration Release --logger "console;verbosity=detailed" > test_results.txt
-          if [ $? -eq 0 ]; then
-            echo "::set-output name=status::true"
-          else
-            echo "::set-output name=status::false"
-          fi
-        continue-on-error: true
+          dotnet test --no-build --configuration Release --logger "trx"
+          dotnet tool install -g dotnet-reportgenerator-globaltool
+          reportgenerator -reports:**/*.trx -targetdir:TestResults -reporttypes:"HtmlInline;TextSummary"
+          cat TestResults/Summary.txt
 
-      - name: Prepare Test Results
-        id: prep_results
-        if: always()
-        run: |
-          test_output="$(<test_results.txt)"
-          echo "::set-output name=results::${test_output}"
+      - name: Archive Test Results
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-results
+          path: TestResults/
 
-      - name: Send email notification
+      - name: Send email notification with Test Summary
         if: always() # Ensures email is sent regardless of previous step success/failure
         uses: dawidd6/action-send-mail@v2
         with:
@@ -50,10 +39,7 @@ jobs:
           username: ${{ secrets.SMTP_USERNAME }}
           password: ${{ secrets.SMTP_PASSWORD }}
           subject: GitHub Actions Build/Test Result
-          body: |
-            Build Succeeded: ${{ steps.build.outputs.status }}
-            Tests Passed: ${{ steps.test.outputs.status }}
-            Test Results:
-            ${{ steps.prep_results.outputs.results }}
+          body: The build and test process completed. Check the attached report for details.
           to: ${{ secrets.EMAIL_RECIPIENT }}
           from: ${{ secrets.SMTP_USERNAME }}
+          attachments: TestResults/Summary.txt
