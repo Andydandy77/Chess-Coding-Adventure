@@ -1,4 +1,4 @@
-name: Build, Test, and Report
+name: Build, Test, and Report Detailed
 
 on: [pull_request]
 
@@ -17,20 +17,22 @@ jobs:
       - name: Build
         run: dotnet build --configuration Release
 
-      - name: Run Tests with Report
+      - name: Test and Capture Results
         run: |
-          dotnet test --no-build --configuration Release --logger "trx"
-          dotnet tool install -g dotnet-reportgenerator-globaltool
-          reportgenerator -reports:**/*.trx -targetdir:TestResults -reporttypes:"HtmlInline;TextSummary"
-          cat TestResults/Summary.txt
+          dotnet test --no-build --configuration Release --logger "console;verbosity=detailed" > test_results.txt
 
-      - name: Archive Test Results
-        uses: actions/upload-artifact@v2
-        with:
-          name: test-results
-          path: TestResults/
+      - name: Process Test Results
+        id: process_test_results
+        run: |
+          # Extracting test results - simple example
+          passed_tests=$(grep -oP 'Passed!  \K.*' test_results.txt)
+          failed_tests=$(grep -oP 'Failed!  \K.*' test_results.txt)
+          echo "Passed Tests: $passed_tests"
+          echo "Failed Tests: $failed_tests"
+          echo "::set-output name=passed_tests::$passed_tests"
+          echo "::set-output name=failed_tests::$failed_tests"
 
-      - name: Send email notification with Test Summary
+      - name: Send email notification with Test Details
         if: always() # Ensures email is sent regardless of previous step success/failure
         uses: dawidd6/action-send-mail@v2
         with:
@@ -38,8 +40,12 @@ jobs:
           server_port: ${{ secrets.SMTP_PORT }}
           username: ${{ secrets.SMTP_USERNAME }}
           password: ${{ secrets.SMTP_PASSWORD }}
-          subject: GitHub Actions Build/Test Result
-          body: The build and test process completed. Check the attached report for details.
+          subject: GitHub Actions Detailed Test Result
+          body: |
+            Passed Tests:
+            ${{ steps.process_test_results.outputs.passed_tests }}
+            
+            Failed Tests:
+            ${{ steps.process_test_results.outputs.failed_tests }}
           to: ${{ secrets.EMAIL_RECIPIENT }}
           from: ${{ secrets.SMTP_USERNAME }}
-          attachments: TestResults/Summary.txt
