@@ -10,9 +10,9 @@ public class EngineUCI
 	static readonly string[] positionLabels = new[] { "position", "fen", "moves" };
 	static readonly string[] goLabels = new[] { "go", "movetime", "wtime", "btime", "winc", "binc", "movestogo" };
 
-	public EngineUCI()
+	public EngineUCI(Bot player)
 	{
-		player = new Bot();
+		this.player = player;
 		player.OnMoveChosen += OnMoveChosen;
 	}
 
@@ -39,6 +39,12 @@ public class EngineUCI
 				break;
 			case "go":
 				ProcessGoCommand(message);
+				var mateAnnouncement = player.CheckForMate();
+				if (!string.IsNullOrEmpty(mateAnnouncement))
+				{
+					Console.Write(mateAnnouncement);
+				}
+
 				break;
 			case "stop":
 				if (player.IsThinking)

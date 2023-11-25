@@ -4,7 +4,7 @@ public static class Program
 {
 	public static void Main(string[] args)
 	{
-		EngineUCI engine = new();
+		EngineUCI engine = new(new Bot());
 
 		string command = String.Empty;
 		while (command != "quit")
