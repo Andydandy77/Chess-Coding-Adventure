@@ -7,7 +7,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e111292f-4d52-45ab-9365-6f75f7d2321b" name="Changes" comment="" />
+    <list default="true" id="e111292f-4d52-45ab-9365-6f75f7d2321b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Chess-Coding-Adventure-Tests/IntegrationTests/EngineUciTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chess-Coding-Adventure/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chess-Coding-Adventure/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chess-Coding-Adventure/src/Bot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Chess-Coding-Adventure/src/Bot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chess-Coding-Adventure/src/EngineUCI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Chess-Coding-Adventure/src/EngineUCI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chess-Coding-Adventure/src/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Chess-Coding-Adventure/src/Program.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,16 +28,21 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/377b61b613ea444f826f377d9474ffca3c9a8/a0/d2cecb32/ExecutionTimer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/377b61b613ea444f826f377d9474ffca3c9a8/f0/0908c296/TestInvoker`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/caccb9a16b7398be8d7bb6172f25e9c31e7d93eca254e79c3c6ff3ce733da8c/Dictionary.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/dc102ba0c3b9178d93c5bd97dc845979256f9b45acd8aa4210aeccda5852eb/CancellationTokenSource.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 3
-}]]></component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="false" />
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2X5TvVaNqWfYCkWww9drjEfhCu4" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -42,7 +53,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "testScript",
+    "git-widget-placeholder": "integration-tests",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -105,6 +116,7 @@
       <select />
     </coverage-tree-state>
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
@@ -112,95 +124,30 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Chess-Coding-Adventure/src/Core/Helpers/MoveUtility.cs</url>
-          <line>11</line>
-          <properties documentPath="$PROJECT_DIR$/Chess-Coding-Adventure/src/Core/Helpers/MoveUtility.cs" initialLine="11" containingFunctionPresentation="Method 'GetMoveFromUCIName'">
+          <url>file://$PROJECT_DIR$/Chess-Coding-Adventure/src/Core/Search/Searcher.cs</url>
+          <line>222</line>
+          <properties documentPath="$PROJECT_DIR$/Chess-Coding-Adventure/src/Core/Search/Searcher.cs" initialLine="222" containingFunctionPresentation="Method 'Search'">
             <startOffsets>
-              <option value="364" />
+              <option value="7378" />
             </startOffsets>
             <endOffsets>
-              <option value="440" />
+              <option value="7400" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="4" />
+          <option name="timeStamp" value="46" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Chess-Coding-Adventure/src/Core/Game Result/Arbiter.cs</url>
-          <line>30</line>
-          <properties documentPath="$PROJECT_DIR$/Chess-Coding-Adventure/src/Core/Game Result/Arbiter.cs" initialLine="30" containingFunctionPresentation="Method 'GetGameState'">
+          <url>file://$PROJECT_DIR$/Chess-Coding-Adventure/src/Core/Search/Searcher.cs</url>
+          <line>86</line>
+          <properties documentPath="$PROJECT_DIR$/Chess-Coding-Adventure/src/Core/Search/Searcher.cs" initialLine="86" containingFunctionPresentation="Method 'StartSearch'">
             <startOffsets>
-              <option value="828" />
+              <option value="2475" />
             </startOffsets>
             <endOffsets>
-              <option value="878" />
+              <option value="2524" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Chess-Coding-Adventure/src/Core/Game Result/Arbiter.cs</url>
-          <line>19</line>
-          <properties documentPath="$PROJECT_DIR$/Chess-Coding-Adventure/src/Core/Game Result/Arbiter.cs" initialLine="19" containingFunctionPresentation="Method 'IsWhiteWinsResult'">
-            <startOffsets>
-              <option value="492" />
-            </startOffsets>
-            <endOffsets>
-              <option value="591" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Chess-Coding-Adventure/src/Core/Game Result/Arbiter.cs</url>
-          <line>14</line>
-          <properties documentPath="$PROJECT_DIR$/Chess-Coding-Adventure/src/Core/Game Result/Arbiter.cs" initialLine="14" containingFunctionPresentation="Method 'IsWinResult'">
-            <startOffsets>
-              <option value="359" />
-            </startOffsets>
-            <endOffsets>
-              <option value="421" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Chess-Coding-Adventure/src/Core/Game Result/Arbiter.cs</url>
-          <line>24</line>
-          <properties documentPath="$PROJECT_DIR$/Chess-Coding-Adventure/src/Core/Game Result/Arbiter.cs" initialLine="24" containingFunctionPresentation="Method 'IsBlackWinsResult'">
-            <startOffsets>
-              <option value="662" />
-            </startOffsets>
-            <endOffsets>
-              <option value="761" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Chess-Coding-Adventure/src/Core/Board/Board.cs</url>
-          <line>526</line>
-          <properties documentPath="$PROJECT_DIR$/Chess-Coding-Adventure/src/Core/Board/Board.cs" initialLine="526" containingFunctionPresentation="Method 'MovePiece'">
-            <startOffsets>
-              <option value="17972" />
-            </startOffsets>
-            <endOffsets>
-              <option value="18030" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Chess-Coding-Adventure/src/Core/Board/Board.cs</url>
-          <line>75</line>
-          <properties documentPath="$PROJECT_DIR$/Chess-Coding-Adventure/src/Core/Board/Board.cs" initialLine="75" containingFunctionPresentation="Method 'MakeMove'">
-            <startOffsets>
-              <option value="2798" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2833" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="12" />
+          <option name="timeStamp" value="47" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

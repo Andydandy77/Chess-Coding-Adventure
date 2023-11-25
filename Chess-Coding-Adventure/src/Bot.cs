@@ -177,4 +177,9 @@ public class Bot
 	{
 		return File.ReadAllText(GetResourcePath(localPath));
 	}
+	
+	public string? CheckForMate()
+	{
+		return Arbiter.IsWinResult(Arbiter.GetGameState(board)) ? Arbiter.GetGameState(board).ToString() : null;
+	}
 }
