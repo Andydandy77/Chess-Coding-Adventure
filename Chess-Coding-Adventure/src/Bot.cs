@@ -55,10 +55,12 @@ public class Bot
 	{
 		Move move = MoveUtility.GetMoveFromUCIName(moveString, board);
 		board.MakeMove(move);
+		Console.WriteLine(BoardHelper.CreateDiagram(board, true, false, false));
 	}
 
 	public int ChooseThinkTime(int timeRemainingWhiteMs, int timeRemainingBlackMs, int incrementWhiteMs, int incrementBlackMs)
 	{
+
 		int myTimeRemainingMs = board.IsWhiteToMove ? timeRemainingWhiteMs : timeRemainingBlackMs;
 		int myIncrementMs = board.IsWhiteToMove ? incrementWhiteMs : incrementBlackMs;
 		// Get a fraction of remaining time to use for current move
@@ -178,7 +180,7 @@ public class Bot
 		return File.ReadAllText(GetResourcePath(localPath));
 	}
 	
-	public string? CheckForMate()
+	public string? CheckForGameOver()
 	{
 		return Arbiter.IsWinResult(Arbiter.GetGameState(board)) ? Arbiter.GetGameState(board).ToString() : null;
 	}
