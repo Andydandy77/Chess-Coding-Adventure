@@ -39,7 +39,7 @@ public class EngineUCI
 				break;
 			case "go":
 				ProcessGoCommand(message);
-				var mateAnnouncement = player.CheckForMate();
+				var mateAnnouncement = player.CheckForGameOver();
 				if (!string.IsNullOrEmpty(mateAnnouncement))
 				{
 					Console.Write(mateAnnouncement);
@@ -107,7 +107,7 @@ public class EngineUCI
 		}
 		else
 		{
-			Console.WriteLine("Invalid position command (expected 'startpos' or 'fen')");
+			Console.WriteLine(@"Invalid position command (expected 'startpos' or 'fen')");
 		}
 
 		// Moves

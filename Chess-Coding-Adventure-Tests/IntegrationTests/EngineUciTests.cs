@@ -58,7 +58,7 @@ public class EngineUciTests
 	}
 	
 	[Fact]
-	public void TestFullGameSimulation()
+	public void TestCheckmate()
 	{
 		var engine = new EngineUCI(new Bot());
 		var output = new StringWriter();
@@ -66,7 +66,58 @@ public class EngineUciTests
 		engine.ReceiveCommand("position startpos moves f2f3 e7e6 g2g4 d8h4");
 		engine.ReceiveCommand("go wtime 60000 btime 60000");
 		Assert.Equal("WhiteIsMated", output.ToString());
+		
+	}
+	
+	[Fact]
+	public async void TestFullGameSimulation()
+	{
+		var botWhite = new Bot();
+        var botBlack = new Bot();
+        var engineWhite = new EngineUCI(botWhite);
+        var engineBlack = new EngineUCI(botBlack);
 
+        var isWhiteTurn = true;
+        var currentFen = botWhite.board.CurrentFEN;
+
+        const int whiteThinkTime = 100;
+        const int blackThinkTime = 10;
+
+        while (true)
+        {
+	        var currentEngine = isWhiteTurn ? engineWhite : engineBlack;
+
+	        // Instruct the engine to calculate the best move
+	        var output = new StringWriter();
+	        Console.SetOut(output);
+	        currentEngine.ReceiveCommand("position fen " + currentFen);
+	        currentEngine.ReceiveCommand($"go movetime {(isWhiteTurn ? whiteThinkTime : blackThinkTime)}");
+
+	        await Task.Delay(200); // Simulating the engine's thinking time
+	        if (output.ToString().Contains("IsMated"))
+	        {
+		        Assert.Equal("BlackIsMated",output.ToString());
+		        return;
+	        }
+
+	        // Capture the output from the engine and extract the best move
+	        var bestMove = GetBestMoveFromOutput(output.ToString());
+	        // Apply the best move to both bots and get new FEN
+	        var currentBot = isWhiteTurn ? botWhite : botBlack;
+	        currentBot.MakeMove(bestMove);
+	        currentFen = currentBot.board.CurrentFEN;
+
+	        // Toggle turn
+	        isWhiteTurn = !isWhiteTurn;
+
+        }
+        
+	}
+
+
+	private string GetBestMoveFromOutput(string engineOutput)
+	{
+		return engineOutput.Split(" ")[1];
 	}
 
 }
