@@ -182,5 +182,56 @@ namespace Chess_Coding_Adventure_Tests.HelpersTests
             //assert
             Assert.Equal(result, expectedResult);
         }
+        
+        [Fact]
+        public void CreateDiagram_StartingPosition_IncludesCorrectFenAndZobristKey()
+        {
+            var board = new Board();
+            board.LoadStartPosition();
+            string diagram = BoardHelper.CreateDiagram(board);
+
+            Assert.Contains("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", diagram); // FEN for starting position
+            Assert.Contains("Zobrist Key", diagram); // Check that Zobrist Key is included
+        }
+
+        [Fact]
+        public void CreateDiagram_CustomPosition_CheckLastMoveHighlight()
+        {
+            var board = new Board();
+            // Load a custom board position
+            board.LoadPosition("8/3r2k1/5ppp/8/2B5/8/PPP2PPP/R3K2R w KQ - 3 21");
+            // For example, let's move the white bishop from c4 to b5
+            board.MakeMove(new Move(BoardHelper.SquareIndexFromName("c4"), BoardHelper.SquareIndexFromName("b5")));
+    
+            string diagram = BoardHelper.CreateDiagram(board);
+
+            Assert.Contains("(B)", diagram); // The bishop moved should be highlighted
+        }
+
+
+        [Fact]
+        public void CreateDiagram_WhiteAtTop_ShouldRenderFileNamesReversed()
+        {
+            var board = new Board();
+            board.LoadStartPosition();
+            string diagram = BoardHelper.CreateDiagram(board, blackAtTop: false);
+
+            // The top rank should be rank 1 and file names should be reversed.
+            Assert.StartsWith("+---+---+---+---+---+---+---+---+", diagram);
+            Assert.Contains("  h   g   f   e   d   c   b   a  ", diagram);
+        }
+
+
+        [Fact]
+        public void CreateDiagram_ExcludeFenAndZobristKey_ShouldNotContainThem()
+        {
+            var board = new Board();
+            board.LoadStartPosition();
+            string diagram = BoardHelper.CreateDiagram(board, includeFen: false, includeZobristKey: false);
+
+            Assert.DoesNotContain("Fen         :", diagram); // FEN should not be included
+            Assert.DoesNotContain("Zobrist Key :", diagram); // Zobrist Key should not be included
+        }
+
     }
 }
