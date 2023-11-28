@@ -113,7 +113,15 @@ public class EngineUciTests
         }
         
 	}
-
+	[Fact]
+	public void TestBoard()
+	{
+        var engine = new EngineUCI(new Bot());
+        var output = new StringWriter();
+        Console.SetOut(output);
+        engine.ReceiveCommand("position startpos moves f2f3");
+		Assert.Equal("+---+---+---+---+---+---+---+---+\r\n| r | n | b | q | k | b | n | r | 8\r\n+---+---+---+---+---+---+---+---+\r\n| p | p | p | p | p | p | p | p | 7\r\n+---+---+---+---+---+---+---+---+\r\n|   |   |   |   |   |   |   |   | 6\r\n+---+---+---+---+---+---+---+---+\r\n|   |   |   |   |   |   |   |   | 5\r\n+---+---+---+---+---+---+---+---+\r\n|   |   |   |   |   |   |   |   | 4\r\n+---+---+---+---+---+---+---+---+\r\n|   |   |   |   |   |(P)|   |   | 3\r\n+---+---+---+---+---+---+---+---+\r\n| P | P | P | P | P |   | P | P | 2\r\n+---+---+---+---+---+---+---+---+\r\n| R | N | B | Q | K | B | N | R | 1\r\n+---+---+---+---+---+---+---+---+\r\n  a   b   c   d   e   f   g   h  \r\n\r\n\r\n", output.ToString());
+    	}
 
 	private string GetBestMoveFromOutput(string engineOutput)
 	{
