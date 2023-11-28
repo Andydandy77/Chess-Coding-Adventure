@@ -19,11 +19,12 @@ public class OpeningBookTests
         Assert.NotNull(openingBook);
     }
 
+    // Failed to return Correct Result
     [Theory]
-    [InlineData("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -", false)]
-    [InlineData("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR b KQkq -", false)] 
-    [InlineData("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 2", false)] 
-    [InlineData("rnbqkb1r/pp1ppppp/8/2pnP3/8/2P5/PP1P1PPP/RNBQKBNR w KQkq -", false)] 
+    [InlineData("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -", true)]
+    [InlineData("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR b KQkq -", true)] 
+    [InlineData("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 2", true)] 
+    [InlineData("rnbqkb1r/pp1ppppp/8/2pnP3/8/2P5/PP1P1PPP/RNBQKBNR w KQkq -", true)] 
     public void HasBookMove_ShouldReturnCorrectResult(string fen, bool expectedResult)
     {
         // Arrange
@@ -36,6 +37,7 @@ public class OpeningBookTests
         Assert.Equal(expectedResult, result);
     }
 
+    // Failed to return Valid Move 
     [Fact]
     public void TryGetBookMove_WithValidBoard_ShouldReturnValidMove()
     {
@@ -43,11 +45,14 @@ public class OpeningBookTests
         var openingBook = new OpeningBook(TestBookFilePath);
         var bot = new Bot();
         var board = bot.board;
+        // Set up the board with a position that is present in the opening book
+        board.LoadPosition("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
 
         // Act
         bool result = openingBook.TryGetBookMove(board, out string moveString);
 
         // Assert
-        Assert.False(result);
+        Assert.True(result);
+        Assert.NotEqual("Null", moveString);
     }
 }
