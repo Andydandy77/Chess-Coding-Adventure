@@ -26,10 +26,10 @@ public class PGNCreatorTests
         string pgn = PGNCreator.CreatePGN(moves);
 
         // Assert
-        string expectedPGN = "[Result \"InProgress\"]\r\n1. " + MoveUtility.GetMoveNameSAN(moves[0], board) + " " + MoveUtility.GetMoveNameSAN(moves[1], board) + " ";
+        string expectedPGN = "[Result \"InProgress\"]\n1. " + MoveUtility.GetMoveNameSAN(moves[0], board) + " " + MoveUtility.GetMoveNameSAN(moves[1], board) + " ";
         expectedPGN += "2. " + MoveUtility.GetMoveNameSAN(moves[2], board) + " " + MoveUtility.GetMoveNameSAN(moves[3], board) + " ";
         expectedPGN += "3. " + MoveUtility.GetMoveNameSAN(moves[4], board) + " " + MoveUtility.GetMoveNameSAN(moves[5], board) + " ";
-        Assert.Equal(expectedPGN.Trim(), pgn.Trim());
+        Assert.Equal(expectedPGN.Trim(), pgn.Trim().Replace("\r", ""));
     }
 
     [Fact]
@@ -41,8 +41,8 @@ public class PGNCreatorTests
         string pgn = PGNCreator.CreatePGN(board, GameResult.NotStarted, "Player1", "Player2");
 
         // Assert
-        string expectedPGN = "[White \"Player1\"]\r\n[Black \"Player2\"]";
-        Assert.Equal(expectedPGN.Trim(), pgn.Trim());
+        string expectedPGN = "[White \"Player1\"]\n[Black \"Player2\"]";
+        Assert.Equal(expectedPGN.Trim(), pgn.Trim().Replace("\r", ""));
     }
 
     [Fact]
@@ -64,10 +64,10 @@ public class PGNCreatorTests
         string pgn = PGNCreator.CreatePGN(moves, GameResult.InProgress, FenUtility.StartPositionFEN, "Player1", "Player2");
 
         // Assert
-        string expectedPGN = "[White \"Player1\"]\r\n[Black \"Player2\"]\r\n[Result \"InProgress\"]\r\n";
+        string expectedPGN = "[White \"Player1\"]\n[Black \"Player2\"]\n[Result \"InProgress\"]\n";
         expectedPGN += "1. " + MoveUtility.GetMoveNameSAN(moves[0], board) + " " + MoveUtility.GetMoveNameSAN(moves[1], board) + " ";
         expectedPGN += "2. " + MoveUtility.GetMoveNameSAN(moves[2], board) + " " + MoveUtility.GetMoveNameSAN(moves[3], board) + " ";
-        Assert.Equal(expectedPGN.Trim(), pgn.Trim());
+        Assert.Equal(expectedPGN.Trim(), pgn.Trim().Replace("\r", ""));
     }
 
     

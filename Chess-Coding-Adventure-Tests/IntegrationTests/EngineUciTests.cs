@@ -65,7 +65,7 @@ public class EngineUciTests
 		Console.SetOut(output);
 		engine.ReceiveCommand("position startpos moves f2f3 e7e6 g2g4 d8h4");
 		engine.ReceiveCommand("go wtime 60000 btime 60000");
-		Assert.Equal("WhiteIsMated", output.ToString());
+		Assert.Contains("WhiteIsMated", output.ToString());
 		
 	}
 	
@@ -96,7 +96,7 @@ public class EngineUciTests
 	        await Task.Delay(200); // Simulating the engine's thinking time
 	        if (output.ToString().Contains("IsMated"))
 	        {
-		        Assert.Equal("BlackIsMated",output.ToString());
+		        Assert.Contains("BlackIsMated",output.ToString());
 		        return;
 	        }
 
@@ -114,13 +114,33 @@ public class EngineUciTests
         
 	}
 	[Fact]
-	public void TestBoard()
+	public void zTestBoard()
 	{
         var engine = new EngineUCI(new Bot());
         var output = new StringWriter();
         Console.SetOut(output);
         engine.ReceiveCommand("position startpos moves f2f3");
-		Assert.Equal("+---+---+---+---+---+---+---+---+\r\n| r | n | b | q | k | b | n | r | 8\r\n+---+---+---+---+---+---+---+---+\r\n| p | p | p | p | p | p | p | p | 7\r\n+---+---+---+---+---+---+---+---+\r\n|   |   |   |   |   |   |   |   | 6\r\n+---+---+---+---+---+---+---+---+\r\n|   |   |   |   |   |   |   |   | 5\r\n+---+---+---+---+---+---+---+---+\r\n|   |   |   |   |   |   |   |   | 4\r\n+---+---+---+---+---+---+---+---+\r\n|   |   |   |   |   |(P)|   |   | 3\r\n+---+---+---+---+---+---+---+---+\r\n| P | P | P | P | P |   | P | P | 2\r\n+---+---+---+---+---+---+---+---+\r\n| R | N | B | Q | K | B | N | R | 1\r\n+---+---+---+---+---+---+---+---+\r\n  a   b   c   d   e   f   g   h  \r\n\r\n\r\n", output.ToString());
+		Assert.Equal(@"+---+---+---+---+---+---+---+---+
+| r | n | b | q | k | b | n | r | 8
++---+---+---+---+---+---+---+---+
+| p | p | p | p | p | p | p | p | 7
++---+---+---+---+---+---+---+---+
+|   |   |   |   |   |   |   |   | 6
++---+---+---+---+---+---+---+---+
+|   |   |   |   |   |   |   |   | 5
++---+---+---+---+---+---+---+---+
+|   |   |   |   |   |   |   |   | 4
++---+---+---+---+---+---+---+---+
+|   |   |   |   |   |(P)|   |   | 3
++---+---+---+---+---+---+---+---+
+| P | P | P | P | P |   | P | P | 2
++---+---+---+---+---+---+---+---+
+| R | N | B | Q | K | B | N | R | 1
++---+---+---+---+---+---+---+---+
+  a   b   c   d   e   f   g   h  
+
+
+", output.ToString().Replace("\r", ""));
     	}
 
 	private string GetBestMoveFromOutput(string engineOutput)

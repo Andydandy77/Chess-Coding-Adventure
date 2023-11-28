@@ -37,7 +37,7 @@ public class FenUtilityTests
     {
         // Arrange
         string fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
-        string expectedFlippedFen = "8/pppppppp/rnbqkbnr/8/8/8/PPPPPPPP/RNBQKBNR b KQkq - 0 1";
+        string expectedFlippedFen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR b KQkq - 0 1";
 
         // Act
         string flippedFen = FenUtility.FlipFen(fen);

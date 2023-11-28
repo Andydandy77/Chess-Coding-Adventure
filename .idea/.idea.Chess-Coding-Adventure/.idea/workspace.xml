@@ -9,12 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e111292f-4d52-45ab-9365-6f75f7d2321b" name="Changes" comment="">
+    <list default="true" id="e111292f-4d52-45ab-9365-6f75f7d2321b" name="Changes" comment="merge">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Chess-Coding-Adventure/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chess-Coding-Adventure/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chess-Coding-Adventure-Tests/IntegrationTests/EngineUciTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Chess-Coding-Adventure-Tests/IntegrationTests/EngineUciTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chess-Coding-Adventure.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Chess-Coding-Adventure.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chess-Coding-Adventure/src/Bot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Chess-Coding-Adventure/src/Bot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chess-Coding-Adventure/src/EngineUCI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Chess-Coding-Adventure/src/EngineUCI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chess-Coding-Adventure-Tests/OpeningBookTests/OpeningBookTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Chess-Coding-Adventure-Tests/OpeningBookTests/OpeningBookTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,9 +30,12 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0805a4d083f642379b8161c79114d7b9b55400/54/79e51172/Action`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/377b61b613ea444f826f377d9474ffca3c9a8/a0/d2cecb32/ExecutionTimer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/377b61b613ea444f826f377d9474ffca3c9a8/f0/0908c296/TestInvoker`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8517f607c12a4b508364c3f896f0fe6f11da8/6d/21485212/Assert.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bebd253e21dcf766929bfdfd74615bfe46e6e1693b289273dbdb82152893/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/caccb9a16b7398be8d7bb6172f25e9c31e7d93eca254e79c3c6ff3ce733da8c/Dictionary.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/dc102ba0c3b9178d93c5bd97dc845979256f9b45acd8aa4210aeccda5852eb/CancellationTokenSource.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/daveanderson/SU/testing/Chess-Coding-Adventure/Chess-Coding-Adventure-Tests/HelpersTests/PGNCreatorTests.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/daveanderson/SU/testing/Chess-Coding-Adventure/Chess-Coding-Adventure-Tests/IntegrationTests/EngineUciTests.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -50,29 +50,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "XThreadsFramesViewSplitterKey": "0.42521366",
-    "git-widget-placeholder": "simulated-game-test",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "RiderDotCoverHighlightingPageId",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;fix-build&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;RiderDotCoverHighlightingPageId&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "/Users/daveanderson/Library/Application Support/JetBrains/Rider2023.2/resharper-host/DecompilerCache",
-      "/Users/daveanderson/Library/Application Support/JetBrains/Rider2023.2/resharper-host/SourcesCache",
-      "/Users/daveanderson/.local/share/Symbols/src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;/Users/daveanderson/Library/Application Support/JetBrains/Rider2023.2/resharper-host/DecompilerCache&quot;,
+      &quot;/Users/daveanderson/Library/Application Support/JetBrains/Rider2023.2/resharper-host/SourcesCache&quot;,
+      &quot;/Users/daveanderson/.local/share/Symbols/src&quot;
     ]
   }
-}]]></component>
-  <component name="RunManager" selected=".NET Project.Chess-Coding-Adventure">
+}</component>
+  <component name="RunManager" selected=".NET Project.SimulatedGame">
     <configuration name="Chess-Coding-Adventure" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -124,6 +123,7 @@
       <workItem from="1701024405641" duration="3814000" />
       <workItem from="1701030939518" duration="40000" />
       <workItem from="1701031446444" duration="6322000" />
+      <workItem from="1701138045056" duration="3993000" />
     </task>
     <task id="LOCAL-00001" summary="added a couple IT for Bot">
       <option name="closed" value="true" />
@@ -141,7 +141,31 @@
       <option name="project" value="LOCAL" />
       <updated>1701026185973</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="net8.0 -&gt; 6.0">
+      <option name="closed" value="true" />
+      <created>1701152654070</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1701152654070</updated>
+    </task>
+    <task id="LOCAL-00004" summary="8.0 -&gt; 6.0">
+      <option name="closed" value="true" />
+      <created>1701152773087</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1701152773087</updated>
+    </task>
+    <task id="LOCAL-00005" summary="fixed all tests">
+      <option name="closed" value="true" />
+      <created>1701154566317</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1701154566317</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -162,7 +186,10 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="added a couple IT for Bot" />
     <MESSAGE value="Got full test coverage of CreateDiagram" />
-    <option name="LAST_COMMIT_MESSAGE" value="Got full test coverage of CreateDiagram" />
+    <MESSAGE value="net8.0 -&gt; 6.0" />
+    <MESSAGE value="8.0 -&gt; 6.0" />
+    <MESSAGE value="fixed all tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed all tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -185,13 +212,78 @@
           <line>98</line>
           <properties documentPath="$PROJECT_DIR$/Chess-Coding-Adventure-Tests/IntegrationTests/EngineUciTests.cs" initialLine="98" containingFunctionPresentation="Method 'TestFullGameSimulation'">
             <startOffsets>
-              <option value="3119" />
+              <option value="3122" />
             </startOffsets>
             <endOffsets>
-              <option value="3166" />
+              <option value="3172" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Chess-Coding-Adventure-Tests/HelpersTests/PGNCreatorTests.cs</url>
+          <line>36</line>
+          <properties documentPath="$PROJECT_DIR$/Chess-Coding-Adventure-Tests/HelpersTests/PGNCreatorTests.cs" initialLine="36" containingFunctionPresentation="Method 'CreatePGN_WithEmptyMoves_ShouldReturnCorrectPGN'">
+            <startOffsets>
+              <option value="1357" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1358" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Chess-Coding-Adventure-Tests/HelpersTests/PGNCreatorTests.cs</url>
+          <line>28</line>
+          <properties documentPath="$PROJECT_DIR$/Chess-Coding-Adventure-Tests/HelpersTests/PGNCreatorTests.cs" initialLine="28" containingFunctionPresentation="Method 'CreatePGN_WithMovesAndResult_ShouldReturnCorrectPGN'">
+            <startOffsets>
+              <option value="772" />
+            </startOffsets>
+            <endOffsets>
+              <option value="928" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Chess-Coding-Adventure-Tests/IntegrationTests/EngineUciTests.cs</url>
+          <line>62</line>
+          <properties documentPath="$PROJECT_DIR$/Chess-Coding-Adventure-Tests/IntegrationTests/EngineUciTests.cs" initialLine="62" containingFunctionPresentation="Method 'TestCheckmate'">
+            <startOffsets>
+              <option value="1891" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1929" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Chess-Coding-Adventure-Tests/OpeningBookTests/OpeningBookTests.cs</url>
+          <line>20</line>
+          <properties documentPath="$PROJECT_DIR$/Chess-Coding-Adventure-Tests/OpeningBookTests/OpeningBookTests.cs" initialLine="18" containingFunctionPresentation="Method 'Constructor_WithValidFile_ShouldInitializeOpeningBook'">
+            <startOffsets>
+              <option value="601" />
+            </startOffsets>
+            <endOffsets>
+              <option value="629" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Chess-Coding-Adventure/src/Core/Opening Book/OpeningBook.cs</url>
+          <line>9</line>
+          <properties documentPath="$PROJECT_DIR$/Chess-Coding-Adventure/src/Core/Opening Book/OpeningBook.cs" initialLine="9" containingFunctionPresentation="Constructor 'OpeningBook'">
+            <startOffsets>
+              <option value="176" />
+            </startOffsets>
+            <endOffsets>
+              <option value="195" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
