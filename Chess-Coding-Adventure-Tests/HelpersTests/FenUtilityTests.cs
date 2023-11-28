@@ -32,23 +32,17 @@ public class FenUtilityTests
         Assert.Equal(startFen, positionInfo.fen);
     }
     // Failed to flip Fen
-    //[Fact]
-    //public void FlipFen_WithValidFen_ShouldReturnFlippedFen()
-    //{
-    //    // Arrange
-    //    string fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
-    //    string expectedFlippedFen = "8/pppppppp/rnbqkbnr/8/8/8/PPPPPPPP/RNBQKBNR b KQkq - 0 1";
+    [Fact]
+    public void FlipFen_WithValidFen_ShouldReturnFlippedFen()
+    {
+        // Arrange
+        string fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+        string expectedFlippedFen = "8/pppppppp/rnbqkbnr/8/8/8/PPPPPPPP/RNBQKBNR b KQkq - 0 1";
 
-    //    // Act
-    //    string flippedFen = FenUtility.FlipFen(fen);
+        // Act
+        string flippedFen = FenUtility.FlipFen(fen);
 
-    //    // Assert
-    //    Assert.Equal(expectedFlippedFen, flippedFen);
-    //}
-
-
-
-
-
-
+        // Assert
+        Assert.Equal(expectedFlippedFen, flippedFen);
+    }
 }
